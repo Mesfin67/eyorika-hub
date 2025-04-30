@@ -10,7 +10,7 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors("*"));
 
 // API Routes
 app.use("/api/auth", require("./routes/auth"));
