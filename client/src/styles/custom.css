@@ -1,0 +1,156 @@
+/* custom.css */
+
+/* Multicolor Gradient Background */
+body {
+    background: linear-gradient(45deg, #ff6ec4, #8e44ad, #1abc9c);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  /* Square grid overlay */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body.modal-open {
+    padding-right: 0 !important;
+  }
+  
+  
+  /* Ensure main content is above grid overlay */
+  .app > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Blurry Navbar Styling */
+  .navbar-blur {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it's above other elements */
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+  }
+  
+  
+  /* Small button styling (for navbar and elsewhere) */
+  .small-btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  /* ScrollToTop Button (smaller) */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 1.5rem; /* Reduced from 2rem */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity 0.3s;
+  }
+  
+  .scroll-to-top:hover {
+    opacity: 0.8;
+  }
+  @media (max-width: 576px) {
+    .small-toggler {
+      padding: 0.25rem 0.5rem !important;
+      font-size: 0.75rem !important;
+    }
+  }
+  .carousel-image {
+    width: 75%;          /* Adjust width as needed */
+    max-width: 600px;    /* Optional: max-width for responsiveness */
+    margin: 0 auto;      /* Auto margins to center the image */
+    display: block;
+  }
+  .transparent-form {
+    background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    padding: 20px;
+    width: 300px; /* Adjust as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  
+  .transparent-form input,
+  .transparent-form button {
+    /* background: rgba(255, 255, 255, 0.5); Slight transparency for inputs */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .transparent-form input::placeholder {
+    color: rgba(255, 255, 255, 0.8); /* Lighter placeholder text */
+  }
+  
+  .transparent-form button {
+    background: rgba(0, 123, 255, 0.8); /* Semi-transparent button */
+    color: white;
+    cursor: pointer;
+  }
+  
+  .transparent-form button:hover {
+    background: rgba(0, 123, 255, 0.9); /* Slightly darker on hover */
+  }
+  /* Make navbar toggler smaller on mobile */
+.small-toggler {
+    padding: 2px 6px !important;
+    font-size: 0.8rem !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .small-text {
+    font-size: 0.75rem; /* Adjust this value if needed for a very small font size */
+    text-align: center;
+  }
+  
+  .small-text-mobile {
+    font-size: 1rem; /* Default font on large screens */
+  }
+  
+  @media (max-width: 991px) {
+    .small-text-mobile {
+      font-size: 0.75rem;
+    }
+  }
+  
+  /* Example: Make nav text small on mobile, normal on larger screens */
+@media (max-width: 991px) {
+  .navbar .nav-link {
+    font-size: 0.75rem;
+  }
+}
+/* Set a fixed container size for the carousel */
+.fixed-carousel-container {
+  width: 500px;    /* Fixed width */
+  height: 300px;   /* Fixed height */
+  margin: 0 auto;  /* Center the carousel horizontally */
+  overflow: hidden;
+}
+
+/* Apply fixed dimensions to the images */
+.carousel-image {
+  width: 500px !important;
+  height: 300px !important;
+  object-fit: cover; /* Ensures the image covers the box without distortion */
+}

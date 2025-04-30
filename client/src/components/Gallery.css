@@ -1,0 +1,26 @@
+/* Gallery.css */
+
+/* Ensure a consistent fixed size for the image cards */
+.fixed-gallery-img {
+    width: 100%;
+    height: 250px; /* Fixed height for each image */
+    object-fit: cover; /* Crop/scale so the image covers the area */
+  }
+  
+  /* Styling for the card with a custom shadow and hover effect */
+  .gallery-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+  }
+  .gallery-card:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Optional: Style the caption text */
+  .caption {
+    font-size: 0.9rem;
+  }
+  
+  /* Space between sections */
+ 
