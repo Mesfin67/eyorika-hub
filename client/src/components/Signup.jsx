@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signup } from '../api/auth';
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     try {
-      const data = await signup(email, password);
+      const data = await signup(username, password);
       // After successful signup, redirect to login with a success message
       navigate("/login", { state: { successMessage: data.message } });
     } catch (err) {
@@ -25,15 +25,16 @@ const Signup = () => {
       <div className="transparent-form p-4" style={{ width: '300px' }}>
         <h3 className="text-center mb-3">Sign Up</h3>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="signupEmail" className="form-label">Email</label>
+            <label htmlFor="signupUsername" className="form-label">Username</label>
             <input
-              type="email"
+              type="text"
               className="form-control form-control-sm"
-              id="signupEmail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="signupUsername"
+              autofocus 
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>

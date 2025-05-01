@@ -7,7 +7,7 @@ const HorizontalCarousel = () => {
       <Carousel.Item>
         <img
           className="carousel-image d-block w-100"
-          src="images/hpimg49.jpg"
+          src="images/homepageimg44.jpg"
           alt="First slide"
         />
       </Carousel.Item>
@@ -23,6 +23,13 @@ const HorizontalCarousel = () => {
           className="carousel-image d-block w-100"
           src="images/hpimg46.jpg"
           alt="Third slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="carousel-image d-block w-100"
+          src="images/img54.jpg"
+          alt="Fourth slide"
         />
       </Carousel.Item>
     </Carousel>

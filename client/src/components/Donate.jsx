@@ -9,7 +9,7 @@ const Donate = () => {
     bankName: "CBE",
     bankAccountName: "Eyorika Charity",
     bankAccountNumber: "00000000000",
-    IBAN: "ET00 1234  7890",
+    SwiftCode: "ET00 1234  7890",
   };
 
   const [copySuccess, setCopySuccess] = useState('');
@@ -57,7 +57,7 @@ const Donate = () => {
             </Button>
           </p>
           <p>
-            <strong>IBAN:</strong> {bankDetails.IBAN}{' '}
+            <strong>Swift Code</strong> {bankDetails.IBAN}{' '}
             <Button 
               variant="outline-secondary" 
               size="sm" 
@@ -78,13 +78,13 @@ const Donate = () => {
         </Col>
         <Col xs={12} md={6}>
           <p>
-            <strong>Mobile Money:</strong> Donate via telebirr at: <span style={{ fontWeight: 'bold' }}>091999999999</span>{' '}
-            <Button variant="outline-secondary" size="sm" onClick={() => copyToClipboard("0919123456")}>
+            <strong>Mobile Money:</strong> via telebirr at: <span style={{ fontWeight: 'bold' }}>091999999999</span>{' '}
+            <Button variant="outline-secondary" size="sm" onClick={() => copyToClipboard("091999999999")}>
               <FaCopy />
             </Button>
           </p>
           <p>
-            <strong>CBE BIRR Donation:</strong> Donate via CBE birr at{' '}
+            <strong>CBE BIRR Donation:</strong> via CBE birr at{' '}
             <a href="https://combanketh.et/" target="_blank" rel="noopener noreferrer">
             https://combanketh.et/
             </a>

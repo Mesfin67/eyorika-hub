@@ -1,4 +1,3 @@
-// frontend/src/components/AboutUs.jsx
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGlobe, FaUsers, FaHandsHelping } from 'react-icons/fa';

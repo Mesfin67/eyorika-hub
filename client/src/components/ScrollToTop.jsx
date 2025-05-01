@@ -1,30 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const [visible, setVisible] = useState(false);
-
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    setVisible(scrolled > 300);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisible);
-    return () => window.removeEventListener('scroll', toggleVisible);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  return (
-    <button onClick={scrollToTop} className="scroll-to-top" style={{ display: visible ? 'inline' : 'none' }}>
-      &#8679;
-    </button>
-  );
+  return null; // This component doesn't render anything UI-related
 };
 
 export default ScrollToTop;

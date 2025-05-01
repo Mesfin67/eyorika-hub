@@ -1,57 +1,60 @@
-// frontend/src/components/AuthModal.jsx
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const AuthModal = ({ show, handleClose, isLogin, onAuth, onSwitchToLogin }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const clearFields = () => {
-    setEmail('');
+    setUsername('');
     setPassword('');
     setConfirmPassword('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
-    // Validate required fields and password length
-    if (!email || !password) {
-      setError("Please fill in all required fields.");
+
+    // Basic validations:
+    if (!username || !password) {
+      setError("Please fill in all required fields");
       return;
     }
     if (password.length < 8) {
       setError("Password must be at least 8 characters long.");
       return;
     }
-    
+
     if (isLogin) {
-      // LOGIN MODE
-      const registeredUserStr = localStorage.getItem('registeredUser');
-      if (!registeredUserStr) {
-        setError("No account found. Please sign up first.");
-        return;
+      // LOGIN MODE: Send credentials to the backend.
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          setError(data.message || "Invalid credentials. Please try again.");
+          return;
+        }
+        // Successful login:
+        onAuth({ username: data.username, token: data.token });
+        localStorage.setItem('user', JSON.stringify({ username: data.username, token: data.token }));
+        navigate('/dashboard');
+        clearFields();
+        handleClose();
+      } catch (err) {
+        setError("Login failed. Please try again.");
       }
-      const registeredUser = JSON.parse(registeredUserStr);
-      if (registeredUser.email !== email || registeredUser.password !== password) {
-        setError("Invalid credentials. Please check your email and password, or sign up first.");
-        return;
-      }
-      // Successful login:
-      onAuth({ email });
-      navigate('/dashboard');
-      clearFields();
-      handleClose();
     } else {
-      // SIGN UP MODE
+      // SIGN UP MODE: Check that confirmation matches.
       if (!confirmPassword) {
         setError("Please confirm your password.");
         return;
@@ -60,29 +63,36 @@ const AuthModal = ({ show, handleClose, isLogin, onAuth, onSwitchToLogin }) => {
         setError("Passwords do not match.");
         return;
       }
-      // Save registration details
-      const newUser = { email, password };
-      localStorage.setItem('registeredUser', JSON.stringify(newUser));
-      setSuccess("Successfully signed up. Please log in now.");
-      clearFields();
-      
-      // After 2 seconds, automatically re-open the modal with the login form.
-      setTimeout(() => {
-        setSuccess('');
-        onSwitchToLogin(); // Parent callback to switch mode and re-open modal.
-      }, 2000);
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/signup', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          setError(data.message || "Sign up failed. Please try again.");
+          return;
+        }
+        setSuccess("Successfully signed up. Please log in now.");
+        clearFields();
+        // After 2 seconds, switch to login mode.
+        setTimeout(() => {
+          setSuccess('');
+          console.log("Calling onSwitchToLogin callback");
+          onSwitchToLogin();
+        }, 2000);
+      } catch (err) {
+        setError("Sign up failed. Please try again.");
+      }
     }
   };
 
   return (
-    <Modal
-      show={show}
-      onHide={() => {
-        setError('');
-        clearFields();
-        handleClose();
-      }}
-      centered
+    <Modal 
+      show={show} 
+      onHide={() => { setError(''); clearFields(); handleClose(); }}
+      centered 
       animation
     >
       <Modal.Header closeButton>
@@ -94,12 +104,13 @@ const AuthModal = ({ show, handleClose, isLogin, onAuth, onSwitchToLogin }) => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
-              type="email"
+              type="text"
               className="form-control"
-              placeholder="Enter your email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter username"
+              autoComplete="username"
+              autofocus 
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -107,7 +118,7 @@ const AuthModal = ({ show, handleClose, isLogin, onAuth, onSwitchToLogin }) => {
             <input
               type="password"
               className="form-control"
-              placeholder="Enter your password (min 8 characters)"
+              placeholder="Enter password (min 8 characters)"
               autoComplete={isLogin ? "current-password" : "new-password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -119,7 +130,7 @@ const AuthModal = ({ show, handleClose, isLogin, onAuth, onSwitchToLogin }) => {
               <input
                 type="password"
                 className="form-control"
-                placeholder="Confirm your password"
+                placeholder="Confirm password"
                 autoComplete="new-password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}

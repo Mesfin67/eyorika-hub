@@ -1,10 +1,9 @@
-// frontend/src/components/Gallery.jsx
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Modal } from 'react-bootstrap';
 import './Gallery.css';
 
 const Gallery = () => {
-  // Define your sections along with arrays of image paths.
+  // Define  with arrays of image paths.
   const gallerySections = [
     {
       title: 'Memories',
@@ -18,7 +17,9 @@ const Gallery = () => {
         '/images/oldimg42.jpg',
         '/images/oldimg43.jpg',
         '/images/oldimg4.jpg',
-        '/images/oldimg5.jpg'
+        '/images/oldimg5.jpg',
+        '/images/oldimg77.jpg',
+        '/images/oldimg78.jpg'
      
       ],
     },
@@ -29,6 +30,10 @@ const Gallery = () => {
         '/images/aimg18.jpg',
         '/images/img15.jpg',
         '/images/img15.jpg',
+        '/images/aimg86.jpg',
+        '/images/aimg87.jpg',
+        '/images/aimg88.jpg',
+        '/images/aimg89.jpg',
 
       ],
     },
@@ -60,7 +65,16 @@ const Gallery = () => {
         '/images/nbimg34.jpg',
         '/images/nbimg40.jpg',
         '/images/nbimg41.jpg',
-        '/images/nbimg34.jpg'
+        '/images/nbimgab.jpg',
+        '/images/nbimg35.jpg',
+        '/images/nbimg37.jpg',
+        '/images/nbimg38.jpg',
+        '/images/nbimg39.jpg'
+
+
+
+
+
       ],
     },
   ];

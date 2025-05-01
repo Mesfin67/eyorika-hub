@@ -1,5 +1,3 @@
-/* custom.css */
-
 /* Multicolor Gradient Background */
 body {
     background: linear-gradient(45deg, #ff6ec4, #8e44ad, #1abc9c);
@@ -154,3 +152,39 @@ body {
   height: 300px !important;
   object-fit: cover; /* Ensures the image covers the box without distortion */
 }
+/* Custom styles for the small toggler icon */
+.small-toggler {
+  padding: 2px 6px !important;
+  font-size: 0.8rem !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* Styling for the user icon and username */
+
+.user-icon {
+  font-size: 1.2rem;
+  margin-right: 0.3rem;
+  color: #fd7e14;
+}
+
+.username-text {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+.logout-button {
+  border: 2px solid red;
+  color: red !important;
+  border-radius: 4px;
+  padding: 2px 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* On hover or when the button is active (clicked) */
+.logout-button:hover,
+.logout-button:active {
+  background-color: red;
+  color: white !important;
+}
+
