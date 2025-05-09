@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        font-size="48" font-family="'Raleway', sans-serif" fill="#8e44ad" filter="url(#shadow)">e</text>
+        font-size="150" font-family="'Raleway', sans-serif" fill="#8e44ad" filter="url(#shadow)">e</text>
   <defs>
     <filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="#6c3483"/></filter>
   </defs>
