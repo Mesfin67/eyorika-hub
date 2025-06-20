@@ -21,7 +21,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos doloribus consecte
         <Col md={4} className="text-center">
           <FaMapMarkerAlt size={50} color="#fd7e14" />
           <h4>Our Location</h4>
-          <p>Shone, East Badewacho,Ethiopia</p>
+          <p>Ethiopia</p>
         </Col>
         <Col md={4} className="text-center">
           <FaPhoneAlt size={50} color="#fd7e14" />
